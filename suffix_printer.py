@@ -1,20 +1,34 @@
+from sys import stdout,stderr
+
 def suffix(s,suf="[+]"):
-    "Suffix a string with another string and return the new value"
+    '''
+    Suffix and return a string.
+    '''
 
     return f"{suf} {s}"
 
-def suffix_print(s,suf="[+]"):
-    "Suffix and print a string"
+def suffix_print(s,suf="[+]",file=stdout,end="\n"):
+    '''
+    Suffix and print a string to stdout.
+    '''
 
-    print(suffix(s,suf))
+    print(suffix(s,suf), file=file, end=end)
 
-def clean_suffix_print(s,suf="[+]", end=""):
-    """Suffix and print a string without the newline character. The ```end```
-    argument is used to indicate the final character of each line, which is
-    a newline character by default."""
+def clean_suffix_print(end="",*args,**kwargs):
+    '''
+    Suffix and print a message without a newline.
+    '''
 
-    print(suffix(s,suf), end="\n")
+    suffix_print(end=end,*args,**kwargs)
 
-# shortcuts are short
+def suffix_print_stderror(*args, **kwargs):
+    '''
+    Suffix and print a message to stderr.
+    '''
+
+    suffix_print(file=stderr,*args,**kwargs)
+
+# SHORTCUTS ARE SHORT
 sprint = suffix_print
 csprint = clean_suffix_print
+esprint = suffix_print_stderror
